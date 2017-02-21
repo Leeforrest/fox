@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.rg">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<table border="1">
+		<tr >
+			<th>名字</th>
+			<th>权限</th>
+			<th>操作</th>
+		</tr>
+		<tr th:each="item : ${users}">
+			<td th:text="${item.name}">name</td>
+			<td th:text="${item.type}">privilege</td>
+			<td></td>
+		</tr>
+	</table>
+</body>
+</html>
