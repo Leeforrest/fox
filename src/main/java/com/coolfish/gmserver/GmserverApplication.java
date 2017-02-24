@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -20,7 +19,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.coolfish.gmserver.mvc.interceptor.UserAuthIncerceptor;
 
 //@EnableWebMvc //增加该注解之后 WebMvcAutoConfiguration中的默认配置将会失效，用户需要自己配置静态资源的路径
-@WebAppConfiguration
 @EnableAutoConfiguration
 @SpringBootApplication
 @ComponentScan("com.coolfish.gmserver.mvc") 
