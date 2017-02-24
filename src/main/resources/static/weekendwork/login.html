@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.rg">
+<head>
+<meta charset="UTF-8"/>
+<link rel="shortcut icon" href="../images/title.png"/>
+<title>cool fish</title>
+
+<style>
+body
+{
+	background-color:#d0e4fe;
+}
+form
+{
+	font-family:"verdana";
+	font-size:20px;
+}
+div{
+	text-align : center;
+}
+</style>
+
+</head>
+<body>
+
+<div style="font-family:verdana;padding:20px;border-radius:2px;border:2px solid #EE872A;">
+	<form action="loginRequest" method="post">
+		用户名:<input type="text" name="name"/><br/>
+		
+		密&nbsp;&nbsp;&nbsp;码:<input type="password" name="pwd"/><br/>
+		<input type="submit" value="登录"/>
+		<div th:switch="${error}">
+			<p th:case="1" style="color:red">user not found</p>
+			<p th:case="2" style="color:red">password wrong</p>
+		</div>
+	</form>
+</div>
+
+</body>
+</html>

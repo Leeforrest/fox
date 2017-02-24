@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.rg">
+<head>
+<meta charset="UTF-8"/>
+<link rel="shortcut icon" href="../images/title.png"/>
+<title >cool fish</title>
+	
+</head>
+<style type="text/css">
+
+
+a:link {
+ 
+ 	color:black;
+	text-decoration:none;
+	font-weight:bold;
+}
+a:link:hover{
+	text-decoration:none;
+	color:gray;
+	font-weight:bold;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td{
+ 	border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    background-color:green;
+}
+
+#menu{
+	font-family:verdana;
+	height:758px;
+	background-color:#d0e4fe;
+	border-radius:5px;
+	border:5px solid white;
+	position:absolute;
+}
+#content{
+ 	height:100%;
+ 	border-radius:5px;
+ 	border:5px solid white;
+	background-color:#EEEEEE;
+	margin-left:150px;
+ 	
+}
+
+#menu_element{
+	width:100%;
+	height:40px;
+	background-color:white;
+	border:1px solid green;
+	border-radius:5px;
+}
+
+
+.button {
+    background-color: gray;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width:100%;
+    height:100%;
+}
+
+.button:hover {
+    background-color: green;
+    color: white;
+    font-weight : bold;
+}
+
+
+</style>
+
+<body style="background-color:#d0e4fe">
+		<div id="head" style="font-family:verdana;padding:20px;background-color:black;border-radius:5px;border:5px solid white;">
+			<h1 id="h" style="color:white" align="center">Lxiaodng Games--Hot Fire</h1>
+		</div>
+		
+		<div style="width:100%	;height:760px;margin:0 auto">
+			<!-- 菜单 -->
+			<div id="menu" >
+				<div id="menu_element" >
+				<input id="userInfo" type="button" class="button" onclick="clientSideInclude('content', '/user')" value="管理员账户" />
+				</div>
+				<div id="menu_element" >
+				<input id="playerManage" type="button" class="button"  onclick="clientSideInclude('content', '/player')" value="玩家管理" />
+				</div>
+				<div id="menu_element" >
+				<input id="serverManage" type="button" class="button"  onclick="serverManageJs" value="服务器管理" />
+				</div>
+			</div>
+		
+			<div id="content">
+			<!-- 每个菜单选项将要展示的内容 -->
+			</div>
+
+		</div>
+		
+		
+			
+		
+
+		<div id="footer" style="background-color:#d0e4fe;clear:both;text-align:center;">
+		<hr/>
+			版权 Lxiaodng games
+		</div>
+	
+	<script>
+	//把服务器返回的页面嵌套到指定标签
+	function clientSideInclude(id, url) {
+		
+		var req = false;
+		// Safari, Firefox, 及其他非微软浏览器
+		if(window.XMLHttpRequest) {
+			try {
+				req = new XMLHttpRequest();
+			} catch(e) {
+				req = false;
+			}
+		// For Internet Explorer on Windows
+		} else if(window.ActiveXObect){
+			try {
+				req = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch (e) {
+				try {
+					req = new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e) {
+					req = false;
+				}
+			}
+		}
+		
+		var element = document.getElementById(id);
+		if (!element) {
+			alert("函数clientSideInclude无法找到id " + id + "。你的网页中必须有一个含有这个id的div 或 span 标签。");
+			return;
+		}
+		if (req) {
+		// 同步请求，等待收到全部内容
+			req.open('GET', url, false);
+			req.send(null);
+			element.innerHTML = req.responseText;
+		} else {
+			element.innerHTML =
+			"对不起，你的浏览器不支持 " +
+			"XMLHTTPRequest 对象。这个网页的显示要求 " +
+			"Internet Explorer 5 以上版本, " +
+			"或 Firefox 或 Safari 浏览器，也可能会有其他可兼容的浏览器存在。";
+		}
+	}
+	</script>
+	</body>
+</html>
