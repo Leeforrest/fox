@@ -1,10 +1,103 @@
 <!DOCTYPE html >
-<html>
+<html xmlns:th="http://www.thymeleaf.rg">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>Insert title here</title>
+<!-- JQuery搞得不是很懂， 直接从google引用一个 -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js">
+</script>
 </head>
 <body>
 
+
+<div class="starter-template" >
+		<h3 align="center">通过玩家名字或玩家id查询:</h3>
+		<br/>
+
+	<form class="form-horizontal" id="search-form">
+			<div class="form-group form-group-lg" >
+				<label class="col-sm-5 control-label">Username</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="username"/>
+				</div>
+			</div>
+			<div class="form-group form-group-lg" >
+				<label class="col-sm-5 control-label">Playeruid</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="playerUid"/>
+				</div>
+			</div>
+
+			<div class="form-group" >
+				<div class="col-sm-6 control-label">
+					<button type="submit" id="bth-search"
+						class="btn btn-primary btn-lg">Search</button>
+				</div>
+			</div>
+	</form>
+
+	<div id="feedback" align="center"></div>
+</div>
+
+	
+	<script>
+	
+	$(document).ready(function($) {
+
+		$("#search-form").submit(function(event) {
+			// Disble the search button
+			enableSearchButton(false);
+
+			// Prevent the form from submitting via the browser.
+			event.preventDefault();
+
+			postSearch();
+
+		});
+
+	});
+	
+
+
+	function postSearch() {
+
+		
+		name = $("#username").val();
+		uid = $("#playeUuid").val();
+		var search = {};
+		search["userName"] = name;//userName要与java对象的属性一直，不然服务器无法正确解析json字符串
+		search["playerUid"] = uid;
+		htmlobj= $.ajax({
+			type : "post",
+			contentType : "application/json",
+			url : "/searchPlayer",
+			data : JSON.stringify(search),
+			//dataType : 'json',//注释掉这句是因为ajax请求返回后会按照json解析，而有时候返回的是html路径
+			timeout : 3000,//gm与游戏服的通信超时时间设置的是2s，所以这个要大点
+			success : function(data) {
+				$('#feedback').html(data);
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				display(e);
+			},
+			done : function(e) {
+				enableSearchButton(true);
+			}
+		});
+		
+	}
+	
+	
+
+	function enableSearchButton(flag) {
+		$("#btn-search").prop("disabled", flag);
+	}
+
+	function display(data) {
+		var json = "<h4>返回结果</h4><pre>" + JSON.stringify(data) + "</pre>";
+		$('#feedback').html(json);
+	}
+	</script>
 </body>
 </html>

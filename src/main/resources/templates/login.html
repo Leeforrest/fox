@@ -4,7 +4,9 @@
 <meta charset="UTF-8"/>
 <link rel="shortcut icon" href="../images/title.png"/>
 <title>cool fish</title>
-
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css" />
+<!-- JQuery搞得不是很懂， 直接从google引用一个 -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <style>
 body
 {
@@ -18,17 +20,53 @@ form
 div{
 	text-align : center;
 }
+.divMaxWidth {
+	max-width:600px;
+	font-family:verdana;
+	border-radius:5px;
+	border:none;
+	margin-left : 600px;
+	
+}
 </style>
 
 </head>
 <body>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
-<div style="font-family:verdana;padding:20px;border-radius:2px;border:2px solid #EE872A;">
-	<form action="loginRequest" method="post">
-		用户名:<input type="text" name="name"/><br/>
-		
-		密&nbsp;&nbsp;&nbsp;码:<input type="password" name="pwd"/><br/>
-		<input type="submit" value="登录"/><p th:text="${error}" />
+<div class="divMaxWidth" >
+	<br/>
+	<form class="form-horizontal" action="loginRequest" method="get">
+		<div class="form-group form-group-lg" >
+			<label class="col-sm-3 control-label">用户</label>
+			<div class="col-sm-6">
+				<input id="username" type="text" class="form-control"  name="name"/>
+			</div>
+		</div>
+		<div class="form-group form-group-lg" >
+				<label class="col-sm-3 control-label">密码</label>
+				<div class="col-sm-6">
+					<input id="password" type="password" class="form-control"  name="pwd"/>
+				</div>
+		</div>
+		<div class="form-group" >
+				<div class="col-sm-6 control-label">
+					<input type="submit" id="login"
+						class="btn btn-primary btn-lg" value="登录"/>
+				</div>
+		</div>
 		
 	</form>
 </div>

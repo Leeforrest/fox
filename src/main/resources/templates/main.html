@@ -3,23 +3,15 @@
 <head>
 <meta charset="UTF-8"/>
 <link rel="shortcut icon" href="../images/title.png"/>
-<title >cool fish</title>
-	
+<title >xiao dong</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css" />
+<!-- JQuery搞得不是很懂， 直接从google引用一个 -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 </head>
 <style type="text/css">
 
 
-a:link {
- 
- 	color:black;
-	text-decoration:none;
-	font-weight:bold;
-}
-a:link:hover{
-	text-decoration:none;
-	color:gray;
-	font-weight:bold;
-}
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -84,29 +76,25 @@ th {
     font-weight : bold;
 }
 
-
 </style>
 
 <body style="background-color:#d0e4fe">
-		<div id="head" style="font-family:verdana;padding:20px;background-color:black;border-radius:5px;border:5px solid white;">
-			<h1 id="h" style="color:white" align="center">Lxiaodng Games--Hot Fire</h1>
+		<div id="head" style="font-family:verdana;background-color:black;border-radius:5px;border:5px solid white">
+			<h1 id="head" style="color:white" align="center">Coolfish Games</h1>
 		</div>
 		
 		<div style="width:100%	;height:760px;margin:0 auto">
 			<!-- 菜单 -->
 			<div id="menu" >
 				<div id="menu_element" >
-				<input id="userInfo" type="button" class="button" onclick="clientSideInclude('content', '/user')" value="管理员账户" />
+				<input id="userInfo" type="button" class="button" value="管理员账户" />
 				</div>
 				<div id="menu_element" >
-				<input id="playerManage" type="button" class="button"  onclick="clientSideInclude('content', '/player')" value="玩家管理" />
+				<input id="playerManage" type="button" class="button"   value="玩家管理" />
 				</div>
 				<div id="menu_element" >
-				<input id="serverManage" type="button" class="button"  onclick="serverManageJs" value="服务器管理" />
+				<input id="serverManage" type="button" class="button"  value="服务器管理" />
 				</div>
-
-
-				
 			</div>
 		
 			<div id="content">
@@ -116,57 +104,41 @@ th {
 		</div>
 		
 		
-			
 		
 
 		<div id="footer" style="background-color:#d0e4fe;clear:both;text-align:center;">
 		<hr/>
-			版权 Lxiaodng games
+			版权 Coolfish Games
 		</div>
 	
-	<script>
-	//把服务器返回的页面嵌套到指定标签
-	function clientSideInclude(id, url) {
+	<script type="text/javascript">
+	
+	$(document).ready(function(){
+		 $("#userInfo").click(function(){
+			 htmlobj=$.ajax({url:"/user",async:false});
+			$("#content").html(htmlobj.responseText);
+		});
+	});
+	
+	$(document).ready(function(){
 		
-		var req = false;
-		// Safari, Firefox, 及其他非微软浏览器
-		if(window.XMLHttpRequest) {
-			try {
-				req = new XMLHttpRequest();
-			} catch(e) {
-				req = false;
-			}
-		// For Internet Explorer on Windows
-		} else if(window.ActiveXObect){
-			try {
-				req = new ActiveXObject("Msxml2.XMLHTTP");
-			} catch (e) {
-				try {
-					req = new ActiveXObject("Microsoft.XMLHTTP");
-				} catch (e) {
-					req = false;
-				}
-			}
-		}
+		 $("#playerManage").click(function(){
+			 htmlobj=$.ajax({url:"/player",async:false});
+			$("#content").html(htmlobj.responseText);
+		});
+	});
+	
+	$(document).ready(function(){
 		
-		var element = document.getElementById(id);
-		if (!element) {
-			alert("函数clientSideInclude无法找到id " + id + "。你的网页中必须有一个含有这个id的div 或 span 标签。");
-			return;
-		}
-		if (req) {
-		// 同步请求，等待收到全部内容
-			req.open('GET', url, false);
-			req.send(null);
-			element.innerHTML = req.responseText;
-		} else {
-			element.innerHTML =
-			"对不起，你的浏览器不支持 " +
-			"XMLHTTPRequest 对象。这个网页的显示要求 " +
-			"Internet Explorer 5 以上版本, " +
-			"或 Firefox 或 Safari 浏览器，也可能会有其他可兼容的浏览器存在。";
-		}
-	}
+		  $("#serverManage").click(function(){
+		  	htmlobj=$.ajax({url:"/searchPlayer",async:false});
+		  	alert("11");
+		  	$("#content").html(htmlobj.responseText);
+		  });
+	});
+
+
+	
 	</script>
 	</body>
 </html>

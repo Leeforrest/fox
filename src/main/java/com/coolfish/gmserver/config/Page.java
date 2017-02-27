@@ -13,7 +13,10 @@ public enum Page {
 	Main_Page("main"),
 	/** 管理员*/
 	User("user"),
-	
+	/** 玩家*/
+	Player("player"),
+	/** 玩家基本信息*/
+	PlayerBaseInfo("player_base"),
 	;
 	
 	String htmlPath;//与html名字相同

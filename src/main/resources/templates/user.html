@@ -4,14 +4,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>Insert title here</title>
 </head>
+<style>
+
+</style>
 <body>
-	<table border="1">
+	<table border="1" >
 		<tr >
-			<th>名字</th>
-			<th>权限</th>
-			<th>操作</th>
+			<th >名字</th>
+			<th >权限</th>
+			<th >操作</th>
 		</tr>
-		<tr th:each="item:${users}">
+		<tr th:each="item : ${users}">
 			<td th:text="${item.name}">name</td>
 			<td th:text="${item.type}">privilege</td>
 			<td></td>
