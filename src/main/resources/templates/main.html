@@ -5,138 +5,100 @@
 <link rel="shortcut icon" href="../images/title.png"/>
 <title >xiao dong</title>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css" />
-<script th:src="@{./js/jquery.min.js}"></script>
-</head>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" />
 <style type="text/css">
-
-
-
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-td{
- 	border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-    background-color:green;
-}
-
-#menu{
-	font-family:verdana;
-	height:758px;
-	background-color:#d0e4fe;
-	border-radius:5px;
-	border:5px solid white;
-	position:absolute;
-}
-#content{
- 	height:100%;
- 	border-radius:5px;
- 	border:5px solid white;
-	background-color:#EEEEEE;
-	margin-left:150px;
- 	
-}
-
-#menu_element{
-	width:100%;
-	height:40px;
-	background-color:white;
-	border:1px solid green;
-	border-radius:5px;
-}
-
-
-.button {
-    background-color: gray;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    width:100%;
-    height:100%;
-}
-
-.button:hover {
-    background-color: green;
-    color: white;
-    font-weight : bold;
-}
-
+	.my-nav{
+		border-right:1px solid gray;
+	}
 </style>
+</head>
 
-<body style="background-color:#d0e4fe">
-		<div id="head" style="font-family:verdana;background-color:black;border-radius:5px;border:5px solid white">
-			<h1 id="head" style="color:white" align="center">Coolfish Games</h1>
-		</div>
-		
-		<div style="width:100%	;height:760px;margin:0 auto">
-			<!-- 菜单 -->
-			<div id="menu" >
-				<div id="menu_element" >
-				<input id="userInfo" type="button" class="button" value="管理员账户" />
-				</div>
-				<div id="menu_element" >
-				<input id="playerManage" type="button" class="button"   value="玩家管理" />
-				</div>
-				<div id="menu_element" >
-				<input id="serverManage" type="button" class="button"  value="服务器管理" />
-				</div>
+
+<body>
+
+	<div class="page-header">
+	  <h1>Header<small> Manager</small></h1>
+	</div>
+
+	<div>
+	  	<div class="row">
+	  		<!-- 左边导航栏 -->
+		  	<div class="col-md-2 my-nav">
+			  <ul class="nav nav-pills nav-stacked " role="tablist">
+			    <li role="presentation" class="my-tab active"><a id="user" href="#user" aria-cotrols="user" role="tab" data-toggle="pill">用户信息</a></li>
+			    <li role="presentation" class="my-tab">
+			    	<a href="#player" aria-controls="player" role="tab" data-toggle="modal" data-target="#myModal">玩家账户信息</a>
+			    	</li>
+			  </ul>
 			</div>
-		
-			<div id="content">
-			<!-- 每个菜单选项将要展示的内容 -->
-			</div>
-
+			<!-- 显示结果区域 -->
+	  		<div class="col-md-10 tab-content">
+	    		<div role="tabpanel" class="tab-pane active" id="userContent">
+	    		<table id="table"></table>
+	    		...
+	    		</div>
+	    		<div role="tabpanel" class="tab-pane" id="player">player</div>
+	  		</div>
 		</div>
-		
-		
-		
-
-		<div id="footer" style="background-color:#d0e4fe;clear:both;text-align:center;">
+		<!-- 弹出对话框 -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  		<div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			      </div>
+			      <div class="modal-body">
+			        ...
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+			      </div>
+			    </div>
+	  		</div>
+		</div>
+  		
+	</div>
+	<!-- 下边栏 -->
+	<div id="footer" style="background-color:#d0e4fe;clear:both;text-align:center;">
 		<hr/>
 			版权 Coolfish Games
-		</div>
+	</div>
 	
+	<script
+	  src="https://code.jquery.com/jquery-2.2.4.min.js"
+	  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+	  crossorigin="anonymous">
+	</script>
+	<script th:src="@{./js/bootstrap.min.js}"></script> 
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
 	<script type="text/javascript">
-	
-	$(document).ready(function(){
-		 $("#userInfo").click(function(){
-			 htmlobj=$.ajax({url:"/user",async:false});
-			$("#content").html(htmlobj.responseText);
-		});
-	});
-	
-	$(document).ready(function(){
+	 $("#user").click(function(){
+		 var htmlobj=$.ajax({url:"/user",async:false});
+		 console.log(htmlobj);
+		//$("#userContent").html(htmlobj.responseText);
+		 $('#table').bootstrapTable({
+			    columns: [{
+			        field: 'name',
+			        title: '名字'
+			    }, {
+			        field: 'password',
+			        title: '密码'
+			    }, {
+			        field: 'type',
+			        title: '类型'
+			    }],
+			    data:JSON.parse(htmlobj.responseText).concat(JSON.parse(htmlobj.responseText)).concat(JSON.parse(htmlobj.responseText))
+			});
 		
-		 $("#playerManage").click(function(){
-			 htmlobj=$.ajax({url:"/player",async:false});
-			$("#content").html(htmlobj.responseText);
-		});
 	});
-	
-	$(document).ready(function(){
-		
-		  $("#serverManage").click(function(){
-		  	htmlobj=$.ajax({url:"/searchPlayer",async:false});
-		  	alert("11");
-		  	$("#content").html(htmlobj.responseText);
-		  });
+	$(".my-tab").click(function(){
+		$(".my-tab").removeClass('active');
+		$(this).addClass('active');
 	});
-
-
 	
 	</script>
 	</body>
