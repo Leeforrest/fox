@@ -27,8 +27,9 @@
 			  <ul class="nav nav-pills nav-stacked " role="tablist">
 			    <li role="presentation" class="my-tab active"><a id="user" href="#user" aria-cotrols="user" role="tab" data-toggle="pill">用户信息</a></li>
 			    <li role="presentation" class="my-tab">
-			    	<a href="#player" aria-controls="player" role="tab" data-toggle="modal" data-target="#myModal">玩家账户信息</a>
-			    	</li>
+			    	<a href="#mail" aria-controls="mail" role="tab" data-toggle="modal" data-target="#myModal">邮件</a>
+			    </li>
+			    
 			  </ul>
 			</div>
 			<!-- 显示结果区域 -->
@@ -49,7 +50,8 @@
 			        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
 			      </div>
 			      <div class="modal-body">
-			        ...
+			        <label class="control-label">选择文件</label>
+			        <input id="inputexcel" type="file" class="file"></input>
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -74,7 +76,8 @@
 	<script th:src="@{./js/bootstrap.min.js}"></script> 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
-
+	<script src="//cdn.bootcss.com/bootstrap-fileinput/4.3.8/css/fileinput.min.css"></script>
+	<script src="//cdn.bootcss.com/bootstrap-fileinput/4.3.8/js/fileinput.js"></script>
 	<script type="text/javascript">
 	 $("#user").click(function(){
 		 var htmlobj=$.ajax({url:"/user",async:false});
