@@ -6,6 +6,8 @@
 <title >xiao dong</title>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css" />
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" />
+<link type="text/css"  href="//cdn.bootcss.com/bootstrap-fileinput/4.3.8/css/fileinput.css" />
+
 <style type="text/css">
 	.my-nav{
 		border-right:1px solid gray;
@@ -25,20 +27,25 @@
 	  		<!-- 左边导航栏 -->
 		  	<div class="col-md-2 my-nav">
 			  <ul class="nav nav-pills nav-stacked " role="tablist">
-			    <li role="presentation" class="my-tab active"><a id="user" href="#user" aria-cotrols="user" role="tab" data-toggle="pill">用户信息</a></li>
-			    <li role="presentation" class="my-tab">
-			    	<a href="#mail" aria-controls="mail" role="tab" data-toggle="modal" data-target="#myModal">邮件</a>
+			    <li role="presentation" class="my-tab active">
+			    	<a id="user" href="#user" aria-cotrols="user" role="tab" data-toggle="pill">用户信息</a>
 			    </li>
-			    
+			    <li role="presentation" class="my-tab">
+			    	<a id="motai" href="#motai" aria-controls="motai" role="tab" data-toggle="modal" data-target="#myModal">模态对话框</a>
+			    </li>
+			    <li role="presentation" class="my-tab">
+			    	<a id="mail" href="#mail" aria-controls="mail" role="tab" data-toggle="tab" data-target="#browseFile">邮件</a>
+			    </li>
 			  </ul>
 			</div>
 			<!-- 显示结果区域 -->
 	  		<div class="col-md-10 tab-content">
-	    		<div role="tabpanel" class="tab-pane active" id="userContent">
-	    		<table id="table"></table>
-	    		...
+	    		<div id="userContent" role="tabpanel" class="tab-pane active" >
+	    			<table id="user-table"></table>
 	    		</div>
-	    		<div role="tabpanel" class="tab-pane" id="player">player</div>
+	    		<div id="browseFile" role="tabpanel " class="tab-pane  active">
+				        
+	    		</div>
 	  		</div>
 		</div>
 		<!-- 弹出对话框 -->
@@ -49,10 +56,7 @@
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
 			      </div>
-			      <div class="modal-body">
-			        <label class="control-label">选择文件</label>
-			        <input id="inputexcel" type="file" class="file"></input>
-			      </div>
+
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			        <button type="button" class="btn btn-primary">Save changes</button>
@@ -60,7 +64,7 @@
 			    </div>
 	  		</div>
 		</div>
-  		
+
 	</div>
 	<!-- 下边栏 -->
 	<div id="footer" style="background-color:#d0e4fe;clear:both;text-align:center;">
@@ -83,7 +87,7 @@
 		 var htmlobj=$.ajax({url:"/user",async:false});
 		 console.log(htmlobj);
 		//$("#userContent").html(htmlobj.responseText);
-		 $('#table').bootstrapTable({
+		 $('#user-table').bootstrapTable({
 			    columns: [{
 			        field: 'name',
 			        title: '名字'
@@ -94,10 +98,11 @@
 			        field: 'type',
 			        title: '类型'
 			    }],
-			    data:JSON.parse(htmlobj.responseText).concat(JSON.parse(htmlobj.responseText)).concat(JSON.parse(htmlobj.responseText))
+			    data:JSON.parse(htmlobj.responseText)
 			});
 		
 	});
+	 
 	$(".my-tab").click(function(){
 		$(".my-tab").removeClass('active');
 		$(this).addClass('active');
