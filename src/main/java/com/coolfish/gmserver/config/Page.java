@@ -21,7 +21,7 @@ public enum Page {
 	
 	String htmlPath;//与html名字相同
 
-	private Page(String htmlPath) {
+	Page(String htmlPath) {
 		this.htmlPath = htmlPath;
 	}
 

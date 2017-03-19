@@ -7,7 +7,7 @@ public enum GMUserType {
 	Admin(1),
 	;
 	int value;
-	private GMUserType(int value) {
+	GMUserType(int value) {
 		this.value = value;
 	}
 	

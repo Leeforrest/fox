@@ -31,8 +31,8 @@ public class ExcelReader<T> {
 	private static final int MAX_SHEET = 1;
 	private static final char CSV_DELIM = ';';
 
-	public static interface RowConverter<T> {
-		public T convert(String[] row);
+	public interface RowConverter<T> {
+		T convert(String[] row);
 	}
 
 	public static class Builder<T> {
