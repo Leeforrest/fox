@@ -16,6 +16,7 @@ public class ExcelObj {
     String mail;
     String onCharge;
     String resume;
+    String sendSuccess = "发送失败";
 
 
     public ExcelObj(String id, String job, String name, String sex, String age, String time, String onDuty,
@@ -33,6 +34,7 @@ public class ExcelObj {
         this.onCharge = onCharge;
         this.resume = resume;
     }
+    
     public String getId() {
         return id;
     }
@@ -99,7 +101,15 @@ public class ExcelObj {
     public void setResume(String resume) {
         this.resume = resume;
     }
-    @Override
+    public String getSendSuccess() {
+		return sendSuccess;
+	}
+
+	public void setSendSuccess(String sendSuccess) {
+		this.sendSuccess = sendSuccess;
+	}
+
+	@Override
     public String toString() {
         return "ExcelObj [id=" + id + ", resume=" + resume + "]";
     }

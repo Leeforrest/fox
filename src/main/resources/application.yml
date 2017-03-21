@@ -1,0 +1,27 @@
+#load html every time that you request
+spring:
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5# weak grammar check
+    
+  #mybatis
+  datasource: 
+    url: jdbc:mysql://127.0.0.1:3306/first?useUnicode=true&characterEncoding=gbk&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    testOnBorrow: true
+
+
+  mail:  
+    host: smtp.landsky.com   
+    username: lvlinlin@landsky.cn
+    password: 
+    port: 25
+    properties:  
+      mail:  
+        smtp:  
+          auth: true  
+          starttls:  
+            enable: true  
+            required: true  
