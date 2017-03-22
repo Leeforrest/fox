@@ -16,7 +16,7 @@ public class ExcelObj {
     String mail;
     String onCharge;
     String resume;
-    String sendSuccess = "发送失败";
+    String sendSuccess = "发送成功";
 
 
     public ExcelObj(String id, String job, String name, String sex, String age, String time, String onDuty,

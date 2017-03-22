@@ -14,9 +14,9 @@ spring:
 
 
   mail:  
-    host: smtp.landsky.com   
-    username: lvlinlin@landsky.cn
-    password: 
+    host: mail_server
+    username: sender_mail_address
+    password: mail_password
     port: 25
     properties:  
       mail:  
@@ -25,3 +25,9 @@ spring:
           starttls:  
             enable: true  
             required: true  
+excel:
+  path: linlin.xlsx
+mail:
+  vm: mail.vm
+attachment: 
+  path: linlin.xlsx

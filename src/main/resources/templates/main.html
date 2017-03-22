@@ -32,7 +32,7 @@
 			    	<a href="#player" aria-controls="player" role="tab" data-toggle="modal" data-target="#myModal">玩家</a>
 			    </li>
 			    <li role="presentation" class="my-tab">
-			    	<a id="mails" href="#mails" aria-cotrols="mails" role="tab" data-toggle="pill" >邮件</a>
+			    	<a id="mails" href="#mails" aria-cotrols="mails" role="tab" data-toggle="pill" data-loading-text="sending...">邮件</a>
 			    </li>
 			    
 			  </ul>
@@ -108,6 +108,9 @@
 		 console.log(htmlobj);
 		 $('#table').bootstrapTable({
 			    columns: [{
+			        field: 'sendSuccess',
+			        title: '是否发送成功'
+			    }, {
 			        field: 'id',
 			        title: '序号'
 			    }, {
@@ -150,6 +153,7 @@
 	$(".my-tab").click(function(){
 		$(".my-tab").removeClass('active');
 		$(this).addClass('active');
+		$(this).prop('disabled', true);
 	});
 
 	</script>

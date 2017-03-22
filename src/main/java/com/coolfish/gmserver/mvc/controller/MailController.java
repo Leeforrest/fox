@@ -22,18 +22,28 @@ public class MailController {
 	@Autowired
 	private MailService mailServcie;
 	
+	@Value("${excel.path}")
+	private String excelPath;
 	
     @RequestMapping("/mail")
     @ResponseBody
     public List<ExcelObj> mail() {
         try {
+        	
             ExcelReader.RowConverter<ExcelObj> converter = (row)->new ExcelObj(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10]);
             ExcelReader<ExcelObj>reader = ExcelReader.builder(ExcelObj.class).converter(converter).withHeader().build();
-            List<ExcelObj> objs = reader.read("linlin.xlsx");
+            List<ExcelObj> objs = reader.read("d:/linlin.xlsx");
+            System.out.println(objs.size());
             Constant.objs = objs;
-            if(objs.size() > 0) {
-            	ExcelObj obj = objs.get(0);
-            	mailServcie.sendSimpleMail(obj);
+            for(ExcelObj obj : objs) {
+            	if(!Constant.addAndCheck(obj.getPhone())){
+            		System.out.println("alread send mail to "+ obj.getName() + "will not send to him again!");
+            		continue;
+            	}
+            	long now = System.currentTimeMillis();
+            	System.out.println("sending to " + obj.getName() + "...");
+            	mailServcie.sendAttachmentsMail(obj);
+            	System.out.println("sending to " + obj.getName() + " done!!! 用时:"+(System.currentTimeMillis() - now));
             }
             return objs;
         } catch (Exception e) {
