@@ -26,13 +26,13 @@
 		  	<div class="col-md-2 my-nav">
 			  <ul class="nav nav-pills nav-stacked " role="tablist">
 			    <li role="presentation" class="my-tab">
-					<a id="user" href="#user" aria-cotrols="user" role="tab" data-toggle="pill">用户信息</a>
+					<a id="user" href="#user"  >用户信息</a>
 				</li>
 			    <li role="presentation" class="my-tab">
-			    	<a href="#player" aria-controls="player" role="tab" data-toggle="modal" data-target="#myModal">玩家</a>
+			    	<a id="player" href="#player">玩家</a>
 			    </li>
-			    <li role="presentation" class="my-tab">
-			    	<a id="mails" href="#mails" aria-cotrols="mails" role="tab" data-toggle="pill" data-loading-text="sending...">邮件</a>
+			    <li role="presentation" class="my-tab disabled">
+			    	<a id="mails" href="#mails">邮件</a>
 			    </li>
 			    
 			  </ul>
@@ -45,26 +45,7 @@
 	    		</div>
 	  		</div>
 		</div>
-		<!-- 弹出对话框 -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  		<div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-			      </div>
-			      <div >
-			       <!-- <label class="control-label">选择文件</label>  -->
-			        <input id="inputexcel" type="file" class="file"></input>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary">Save changes</button>
-			      </div>
-			    </div>
-	  		</div>
-		</div>
-  		
+
 	</div>
 	<!-- 下边栏 -->
 	<div id="footer" style="background-color:#d0e4fe;clear:both;text-align:center;">
@@ -155,6 +136,12 @@
 		$(this).addClass('active');
 		$(this).prop('disabled', true);
 	});
+	
+
+	$("#player").click(function() {
+		htmlobj = $.ajax({url:"/player", async:false});
+		$("#userContent").html(htmlobj.responseText);
+	}); 
 
 	</script>
 	</body>
